@@ -40,9 +40,12 @@ class Sc_edit_menu_acc
 		$js = <<<EOF
 $(document).ready(function() {
 	el = $("#navigationTabs li a:contains('Publish')").siblings().clone();
-	el.html( el.html().replace(/content_publish&amp;M=entry_form/g, "content_edit") );
-	$("#navigationTabs li a:contains('Edit')").parent().addClass("parent");
-	$("#navigationTabs li a:contains('Edit')").parent().append( "<ul>"+el.html()+"</ul>" );
+	if (el.html() != null)
+	{
+		el.html( el.html().replace(/content_publish&amp;M=entry_form/g, "content_edit") );
+		$("#navigationTabs li a:contains('Edit')").parent().addClass("parent");
+		$("#navigationTabs li a:contains('Edit')").parent().append( "<ul>"+el.html()+"</ul>" );
+	}
 });
 EOF;
     	$EE->cp->add_to_head('<script type="text/javascript" charset="utf-8">'.$js.'</script>');
